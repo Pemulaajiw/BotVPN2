@@ -670,7 +670,7 @@ async function sendMainMenu(ctx) {
     // Buat pesan utama
     const messageText = `
 📦━━━━━━━━━━━━━━━━━━━━━📦
-      <b>✰ 𝐑𝐞𝐬𝐞𝐥𝐞𝐫 𝐏𝐚𝐧𝐞𝐥 𝐌𝐞𝐧𝐮 ✰<b>
+      <b>✰ 🄰🄽🅂🄴🄽🄳🄰🄽🅃 🅅🄿🄽 ✰<b>
 📦━━━━━━━━━━━━━━━━━━━━━📦
 
 <blockquote>ꜱᴇʟᴀᴍᴀᴛ ᴅᴀᴛᴀɴɢ ᴅɪ <b>${NAMA_STORE}</b> 💎
