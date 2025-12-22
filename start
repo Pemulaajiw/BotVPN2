@@ -51,7 +51,7 @@ setup_bot() {
 
     # Clone Bot
     if [ ! -d /root/BotVPN2 ]; then
-        git clone https://github.com/myridwan/BotVPN2.git /root/BotVPN2
+        git clone https://github.com/Pemulaajiw/BotVPN2.git /root/BotVPN2
     fi
 
     # Install dependencies
@@ -98,7 +98,7 @@ server_app() {
     read -p "Masukkan Email Saweria: " saweria_email
     while [ -z "$apikey" ]; do read -p "Masukkan API KEY: " saweria_email; done
     
-    read -p "Masukkan Username Grup ( myridtunnel ): " username_grup
+    read -p "Masukkan Username Grup ( klmpkfsvpn ): " username_grup
     while [ -z "$username_grup" ]; do read -p "Masukkan USERNAME GRUP: " username_grup; done
     
     read -p "Masukkan Nomor Wa ( 62xxxxx ) : " nomor_wa

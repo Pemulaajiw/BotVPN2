@@ -79,10 +79,10 @@ const bot = new Telegraf(BOT_TOKEN);
 // =======================
 
 // Username/Link yang diwajibkan
-const REQUIRED_CHANNEL = '@ansendant';
-const REQUIRED_GROUP   = '@myridtunnel';
-const channelLink = 'https://t.me/ansendant';
-const groupLink   = 'https://t.me/myridtunnel';
+const REQUIRED_CHANNEL = '@osproject_vpn';
+const REQUIRED_GROUP   = '@klmpkfsvpn';
+const channelLink = 'https://t.me/osproject_vpn';
+const groupLink   = 'https://t.me/klmpkfsvpn';
 
 /**
  * Kirim UI ajakan bergabung dengan tampilan keren (pakai backticks).
@@ -670,7 +670,7 @@ async function sendMainMenu(ctx) {
     // Buat pesan utama
     const messageText = `
 📦━━━━━━━━━━━━━━━━━━━━━📦
-      <b>✨ 🄰🄽🅂🄴🄽🄳🄰🄽🅃 🅅🄿🄽 ✨</b>
+      <b>✰ 𝐑𝐞𝐬𝐞𝐥𝐞𝐫 𝐏𝐚𝐧𝐞𝐥 𝐌𝐞𝐧𝐮 ✰<b>
 📦━━━━━━━━━━━━━━━━━━━━━📦
 
 <blockquote>ꜱᴇʟᴀᴍᴀᴛ ᴅᴀᴛᴀɴɢ ᴅɪ <b>${NAMA_STORE}</b> 💎
@@ -1146,7 +1146,7 @@ bot.action('menu_topup', async (ctx) => {
     // 🧭 Tampilan aman + small caps elegan
     const messageText = `
 📦━━━━━━━━━━━━━━━━━━━━📦
-      <b>⚡ ANSENDANT VPN ⚡</b>
+      <b>⚡ TOP UP SALDO ⚡</b>
 📦━━━━━━━━━━━━━━━━━━━━📦
 
 💳 <b>ᴍᴇɴᴜ ᴛᴏᴘ-ᴜᴘ ꜱᴀʟᴅᴏ</b>  
