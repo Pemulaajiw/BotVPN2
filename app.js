@@ -592,7 +592,7 @@ async function sendMainMenu(ctx) {
     // Buat pesan utama
     const messageText = `
 📦━━━━━━━━━━━━━━━━━━━━━📦
-      <b>✨ 🄰🄽🅂🄴🄽🄳🄰🄽🅃 🅅🄿🄽 ✨<b>
+      <b>🎴 DASHBOARD MENU UTAMA</b>
 📦━━━━━━━━━━━━━━━━━━━━━📦
 
 <blockquote>ꜱᴇʟᴀᴍᴀᴛ ᴅᴀᴛᴀɴɢ ᴅɪ <b>${NAMA_STORE}</b> 💎
@@ -1068,7 +1068,7 @@ bot.action('menu_topup', async (ctx) => {
     // 🧭 Tampilan aman + small caps elegan
     const messageText = `
 📦━━━━━━━━━━━━━━━━━━━━📦
-      <b>⚡ TOP UP SALDO ⚡</b>
+      <b>💰 TOP UP SALDO</b>
 📦━━━━━━━━━━━━━━━━━━━━📦
 
 💳 <b>ᴍᴇɴᴜ ᴛᴏᴘ-ᴜᴘ ꜱᴀʟᴅᴏ</b>  
