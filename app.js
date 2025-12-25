@@ -73,6 +73,84 @@ const ADMIN_WA = vars.ADMIN_WA;
 const GROUP_USERNAME = vars.GROUP_USERNAME;
 
 const bot = new Telegraf(BOT_TOKEN);
+
+// =======================
+// GATE WAJIB JOIN (Channel & Group)
+// =======================
+
+// Username/Link yang diwajibkan
+const REQUIRED_CHANNEL = '@ansendant';
+const REQUIRED_GROUP   = '@myridtunnel';
+const channelLink = 'https://t.me/ansendant';
+const groupLink   = 'https://t.me/myridtunnel';
+
+/**
+ * Kirim UI ajakan bergabung dengan tampilan keren (pakai backticks).
+ */
+async function sendJoinGate(ctx) {
+  const gateText = 
+`🔔 *Selamat Datang Di ${NAMA_STORE} 🤗*
+
+\`\`\`
+Untuk menggunakan bot ini, Anda harus bergabung
+dengan komunitas kami terlebih dahulu.
+\`\`\`
+
+📢 *Channel*: ${REQUIRED_CHANNEL}
+👥 *Group*  : ${REQUIRED_GROUP}
+
+Silakan gabung ke keduanya, lalu tekan tombol
+"✅ Saya Sudah Bergabung" di bawah ini untuk lanjut.`;
+
+  try {
+    await ctx.reply(gateText, {
+      parse_mode: 'Markdown',
+      disable_web_page_preview: true,
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: '🔗 Gabung Channel kami', url: channelLink }],
+          [{ text: '💬 Gabung Group kami',   url: groupLink }],
+          [{ text: '✅ Saya Sudah Bergabung, Lanjutkan', callback_data: 'continue_after_join' }],
+        ]
+      }
+    });
+  } catch (e) {
+    logger.error('Gagal mengirim Join Gate:', e.message);
+  }
+}
+
+/**
+ * Cek apakah user sudah join channel & group.
+ * Memakai username @ untuk getChatMember.
+ */
+async function checkMembership(ctx) {
+  const userId = ctx.from?.id;
+  if (!userId) return false;
+
+  try {
+    const ch = await ctx.telegram.getChatMember(REQUIRED_CHANNEL, userId);
+    const gr = await ctx.telegram.getChatMember(REQUIRED_GROUP,   userId);
+
+    const okStatus = new Set(['creator','administrator','member','owner']);
+    if (okStatus.has(ch?.status) && okStatus.has(gr?.status)) {
+      return true;
+    }
+  } catch (e) {
+    // Bila belum join / private channel, getChatMember bisa error -> anggap belum join
+    logger.warn('checkMembership warn:', e.message);
+  }
+  return false;
+}
+
+// Handler tombol "Saya Sudah Bergabung"
+bot.action('continue_after_join', async (ctx) => {
+  try { await ctx.answerCbQuery(); } catch (e) {}
+  if (await checkMembership(ctx)) {
+    return sendMainMenu(ctx);
+  }
+  return sendJoinGate(ctx);
+});
+
 const adminIds = ADMIN;
 logger.info('Bot initialized');
 
@@ -592,7 +670,7 @@ async function sendMainMenu(ctx) {
     // Buat pesan utama
     const messageText = `
 📦━━━━━━━━━━━━━━━━━━━━━📦
-      <b>🎴 DASHBOARD MENU UTAMA</b>
+      <b>✨ 🄰🄽🅂🄴🄽🄳🄰🄽🅃 🅅🄿🄽 ✨</b>
 📦━━━━━━━━━━━━━━━━━━━━━📦
 
 <blockquote>ꜱᴇʟᴀᴍᴀᴛ ᴅᴀᴛᴀɴɢ ᴅɪ <b>${NAMA_STORE}</b> 💎
@@ -1068,7 +1146,7 @@ bot.action('menu_topup', async (ctx) => {
     // 🧭 Tampilan aman + small caps elegan
     const messageText = `
 📦━━━━━━━━━━━━━━━━━━━━📦
-      <b>💰 TOP UP SALDO</b>
+      <b>⚡ ANSENDANT VPN ⚡</b>
 📦━━━━━━━━━━━━━━━━━━━━📦
 
 💳 <b>ᴍᴇɴᴜ ᴛᴏᴘ-ᴜᴘ ꜱᴀʟᴅᴏ</b>  
