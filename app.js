@@ -723,7 +723,8 @@ async function sendMainMenu(ctx) {
     if (bolehLihatTrial) keyboard.push([{ text: '💠 Trial Akun', callback_data: 'service_trial' }]);
     keyboard.push([{ text: '✏️ Buat Akun', callback_data: 'service_create' }, { text: '♻️ Renew Akun', callback_data: 'service_renew' }]);
     if (tombolSewaScriptAktif) keyboard.push([{ text: '🛒 Sewa Script', callback_data: 'service_sewascript' }]);
-    keyboard.push([{ text: '💰 TopUp Saldo', callback_data: 'menu_topup' }]);
+    keyboard.push([{ text: '💰 Topup Saldo Manual (QRIS)', callback_data: 'topup_manual' }, { text: '💰 TopUp Saldo (ORKUT)', callback_data: 'menu_topup' }]);
+    keyboard.push([{ text: '🤝 Jadi Reseller & Dapat Harga Spesial', callback_data: 'jadi_reseller' }]);
 
     // Kirim atau edit message
     let sentMessage = null;
