@@ -4534,6 +4534,19 @@ function logTopup(user_id, username, amount, method) {
   );
 }
 
+bot.action('jadi_reseller', async (ctx) => {
+  await ctx.answerCbQuery().catch(() => {});
+  const userId = ctx.from.id;
+
+  await ctx.reply(
+    `📩 Hubungi admin ${ADMIN_USERNAME} untuk menjadi Reseller.\n\n` +
+    `💰 <b>Minimal deposit:</b> Rp50,000\n\n` +
+    `Kirim pesan ke admin dengan format:\n` +
+    `<code>Mau jadi reseller ${userId}</code>`,
+    { parse_mode: 'HTML' }
+  );
+});
+
 bot.action(/edit_harga_(\d+)/, async (ctx) => {
   const serverId = ctx.match[1];
   logger.info(`User ${ctx.from.id} memilih untuk mengedit harga server dengan ID: ${serverId}`);
