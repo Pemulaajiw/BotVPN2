@@ -124,11 +124,11 @@ async function checkMembership(ctx) {
   if (!userId) return false;
 
   try {
-    const ch = await ctx.telegram.getChatMember(REQUIRED_CHANNEL, userId);
+//    const ch = await ctx.telegram.getChatMember(REQUIRED_CHANNEL, userId);
     const gr = await ctx.telegram.getChatMember(REQUIRED_GROUP,   userId);
 
     const okStatus = new Set(['creator','administrator','member','owner']);
-    if (okStatus.has(ch?.status) && okStatus.has(gr?.status)) {
+    if (okStatus.has(gr?.status)) {
       return true;
     }
   } catch (e) {
@@ -666,7 +666,7 @@ async function sendMainMenu(ctx) {
     // Buat pesan utama
     const messageText = `
 📦━━━━━━━━━━━━━━━━━━━━━📦
-      <b>✨ 🄰🄽🅂🄴🄽🄳🄰🄽🅃 🅅🄿🄽 ✨</b>
+      <b>🎴 DASHBOARD MENU UTAMA</b>
 📦━━━━━━━━━━━━━━━━━━━━━📦
 
 <blockquote>ꜱᴇʟᴀᴍᴀᴛ ᴅᴀᴛᴀɴɢ ᴅɪ <b>${NAMA_STORE}</b> 💎
