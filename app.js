@@ -79,10 +79,8 @@ const bot = new Telegraf(BOT_TOKEN);
 // =======================
 
 // Username/Link yang diwajibkan
-const REQUIRED_CHANNEL = '@ansendant';
-const REQUIRED_GROUP   = '@myridtunnel';
-const channelLink = 'https://t.me/ansendant';
-const groupLink   = 'https://t.me/myridtunnel';
+const REQUIRED_GROUP   = '@klmpkfsvpn';
+const groupLink   = 'https://t.me/klmpkfsvpn';
 
 /**
  * Kirim UI ajakan bergabung dengan tampilan keren (pakai backticks).
@@ -96,10 +94,9 @@ Untuk menggunakan bot ini, Anda harus bergabung
 dengan komunitas kami terlebih dahulu.
 \`\`\`
 
-📢 *Channel*: ${REQUIRED_CHANNEL}
 👥 *Group*  : ${REQUIRED_GROUP}
 
-Silakan gabung ke keduanya, lalu tekan tombol
+Silakan gabung, lalu tekan tombol
 "✅ Saya Sudah Bergabung" di bawah ini untuk lanjut.`;
 
   try {
@@ -108,7 +105,6 @@ Silakan gabung ke keduanya, lalu tekan tombol
       disable_web_page_preview: true,
       reply_markup: {
         inline_keyboard: [
-          [{ text: '🔗 Gabung Channel kami', url: channelLink }],
           [{ text: '💬 Gabung Group kami',   url: groupLink }],
           [{ text: '✅ Saya Sudah Bergabung, Lanjutkan', callback_data: 'continue_after_join' }],
         ]
