@@ -723,8 +723,8 @@ async function sendMainMenu(ctx) {
     if (bolehLihatTrial) keyboard.push([{ text: '💠 Trial Akun', callback_data: 'service_trial' }]);
     keyboard.push([{ text: '✏️ Buat Akun', callback_data: 'service_create' }, { text: '♻️ Renew Akun', callback_data: 'service_renew' }]);
     if (tombolSewaScriptAktif) keyboard.push([{ text: '🛒 Sewa Script', callback_data: 'service_sewascript' }]);
-    keyboard.push([{ text: '💰 Topup Saldo Manual (QRIS)', callback_data: 'topup_manual' }, { text: '💰 TopUp Saldo (ORKUT)', callback_data: 'menu_topup' }]);
-    keyboard.push([{ text: '🤝 Jadi Reseller & Dapat Harga Spesial', callback_data: 'jadi_reseller' }]);
+    keyboard.push([{ text: '💰 Topup Saldo Manual via (QRIS)', callback_data: 'topup_manual' }]);
+    keyboard.push([{ text: '💰 TopUp Saldo via (ORKUT)', callback_data: 'menu_topup' }]);
 
     // Kirim atau edit message
     let sentMessage = null;
@@ -4544,33 +4544,23 @@ bot.action('topup_manual', async (ctx) => {
 📲 Top Up Saldo Manual via QRIS
 
 💬 Silakan transfer menggunakan QRIS di bawah.
-✅LinkQris
+✅LinkQris:
+https://pemulaajiw.github.io/payment/
 
 
 Setelah transfer, kirim bukti pembayaran ke admin:
 📩 Hubungi Kami Sekarang!  
-✅ Telegram
-✅ WhatsApp
+✅ Telegram:
+https://t.me/AJW29
+✅ WhatsApp:
+https://wa.me/6287898083051?text=ASSALAMUALAIKUM+MIN+MAU+TOPUP😳😳
 
 📝 Kirim bukti pembayaran dan sertakan format pesan seperti ini:
-Saya sudah top up via QRIS min dan ini ID Telegram saya 6197482164
+Saya sudah top up via QRIS min dan ini ID Telegram saya ${userId}
 
 
 Pastikan nominal sesuai dengan saldo yang ingin ditambahkan.`,
     { parse_mode: 'Markdown' }
-  );
-});
-
-bot.action('jadi_reseller', async (ctx) => {
-  await ctx.answerCbQuery().catch(() => {});
-  const userId = ctx.from.id;
-
-  await ctx.reply(
-    `📩 Hubungi admin ${adminUsername} untuk menjadi Reseller.\n\n` +
-    `💰 <b>Minimal deposit:</b> Rp50,000\n\n` +
-    `Kirim pesan ke admin dengan format:\n` +
-    `<code>Mau jadi reseller ${userId}</code>`,
-    { parse_mode: 'HTML' }
   );
 });
 

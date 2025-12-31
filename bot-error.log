@@ -1,0 +1,71 @@
+2025-12-25T08:06:29.715Z [ERROR]: Gagal load pending_deposits:
+2025-12-25T16:29:29.482Z [ERROR]: Bot failed to launch: adminUsername is not defined
+2025-12-25T16:37:05.471Z [ERROR]: Bot failed to launch: adminUsername is not defined
+2025-12-25T16:39:04.600Z [ERROR]: Bot failed to launch: adminUsername is not defined
+2025-12-25T16:48:56.544Z [ERROR]: Bot failed to launch: adminUsername is not defined
+2025-12-25T16:52:56.022Z [ERROR]: Bot failed to launch: adminUsername is not defined
+2025-12-25T16:53:23.320Z [ERROR]: Bot failed to launch: adminUsername is not defined
+2025-12-25T16:54:09.451Z [ERROR]: Bot failed to launch: adminUsername is not defined
+2025-12-25T17:03:28.221Z [ERROR]: Bot failed to launch: adminUsername is not defined
+2025-12-25T17:07:32.037Z [ERROR]: Bot failed to launch: adminUsername is not defined
+2025-12-25T17:08:21.239Z [ERROR]: Bot failed to launch: adminUsername is not defined
+2025-12-25T17:20:25.215Z [ERROR]: ❌ Gagal kirim menu baru untuk user 6197482164:
+2025-12-25T17:20:25.389Z [ERROR]: ❌ Gagal kirim menu baru untuk user 6197482164:
+2025-12-25T17:20:35.985Z [ERROR]: ❌ Gagal kirim menu baru untuk user 6197482164:
+2025-12-25T17:20:36.158Z [ERROR]: ❌ Gagal kirim menu baru untuk user 6197482164:
+2025-12-25T17:22:04.330Z [ERROR]: ❌ Gagal kirim menu baru untuk user 6197482164:
+2025-12-25T17:22:04.503Z [ERROR]: ❌ Gagal kirim menu baru untuk user 6197482164:
+2025-12-25T17:22:13.525Z [ERROR]: ❌ Gagal kirim menu baru untuk user 6197482164:
+2025-12-25T17:22:13.698Z [ERROR]: ❌ Gagal kirim menu baru untuk user 6197482164:
+2025-12-26T05:53:57.396Z [ERROR]: Bot failed to launch: Telegraf: "answerCbQuery" isn't available for "message"
+2025-12-26T06:01:34.740Z [ERROR]: Bot failed to launch: Telegraf: "answerCbQuery" isn't available for "message"
+2025-12-26T06:02:25.664Z [ERROR]: Bot failed to launch: Telegraf: "answerCbQuery" isn't available for "message"
+2025-12-27T12:10:06.035Z [ERROR]: ❌ Axios.get error: AxiosError: Request failed with status code 403
+    at settle (/root/BotVPN2/node_modules/axios/dist/node/axios.cjs:2106:12)
+    at IncomingMessage.handleStreamEnd (/root/BotVPN2/node_modules/axios/dist/node/axios.cjs:3491:11)
+    at IncomingMessage.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/root/BotVPN2/node_modules/axios/dist/node/axios.cjs:4731:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async axios.get (/root/BotVPN2/app.js:6273:16)
+2025-12-27T12:10:10.025Z [ERROR]: ❌ Axios.get error: AxiosError: Request failed with status code 403
+    at settle (/root/BotVPN2/node_modules/axios/dist/node/axios.cjs:2106:12)
+    at IncomingMessage.handleStreamEnd (/root/BotVPN2/node_modules/axios/dist/node/axios.cjs:3491:11)
+    at IncomingMessage.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/root/BotVPN2/node_modules/axios/dist/node/axios.cjs:4731:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async axios.get (/root/BotVPN2/app.js:6273:16)
+2025-12-29T08:21:07.389Z [ERROR]: 🚨 unhandledRejection: FetchError: request to https://api.telegram.org/bot6995675547:[REDACTED]/editMessageText failed, reason: read ECONNRESET
+    at ClientRequest.<anonymous> (/root/BotVPN2/node_modules/node-fetch/lib/index.js:1501:11)
+    at ClientRequest.emit (node:events:524:28)
+    at emitErrorEvent (node:_http_client:101:11)
+    at TLSSocket.socketErrorListener (node:_http_client:504:5)
+    at TLSSocket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+2025-12-29T08:22:34.620Z [ERROR]: ❌ Gagal handle tombol send_main_menu untuk user 6246224358:
+2025-12-30T08:00:32.035Z [ERROR]: Express failed to start:
+2025-12-30T08:00:33.000Z [ERROR]: Bot failed to launch: 409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-12-30T08:03:22.405Z [ERROR]: Express failed to start:
+2025-12-30T08:13:12.109Z [ERROR]: Express failed to start:
+2025-12-30T08:22:05.917Z [ERROR]: Express failed to start:
+2025-12-30T08:48:26.939Z [ERROR]: Express failed to start:
+2025-12-30T08:53:06.406Z [ERROR]: Express failed to start:
+2025-12-30T09:16:25.031Z [ERROR]: Express failed to start:
+2025-12-30T12:31:07.743Z [ERROR]: ❌ Axios.post error: AxiosError: Request failed with status code 400
+    at settle (/root/BotVPN2/node_modules/axios/dist/node/axios.cjs:2106:12)
+    at IncomingMessage.handleStreamEnd (/root/BotVPN2/node_modules/axios/dist/node/axios.cjs:3491:11)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/root/BotVPN2/node_modules/axios/dist/node/axios.cjs:4731:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async axios.post (/root/BotVPN2/app.js:6282:16)
+    at async sendTransactionLogToGroup (/root/BotVPN2/app.js:5549:5)
+    at async afterAccountTransaction (/root/BotVPN2/app.js:5637:5)
+    at async Statement.<anonymous> (/root/BotVPN2/app.js:3234:17)
+2025-12-30T12:31:07.743Z [ERROR]: ❌ Gagal kirim log transaksi ke grup: Bad Request: chat not found
