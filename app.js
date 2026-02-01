@@ -4542,9 +4542,9 @@ https://pemulaajiw.github.io/payment/
 Setelah transfer, kirim bukti pembayaran ke admin:
 📩 Hubungi Kami Sekarang!  
 ✅ Telegram:
-https://t.me/AJW29
+https://t.me/Nji_store
 ✅ WhatsApp:
-https://wa.me/6287898083051?text=ASSALAMUALAIKUM+MIN+MAU+TOPUP😳😳
+https://wa.me/6283135615085?text=ASSALAMUALAIKUM+MIN+MAU+TOPUP😳😳
 
 📝 Kirim bukti pembayaran dan sertakan format pesan seperti ini:
 Saya sudah top up via QRIS min dan ini ID Telegram saya ${userId}
