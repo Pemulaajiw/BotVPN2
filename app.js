@@ -710,7 +710,7 @@ async function sendMainMenu(ctx) {
 ┗━━━━━━━━━━━━━━━━━━━━━┛
 
 ☎️ <b>ʜᴜʙᴜɴɢɪ ᴀᴅᴍɪɴ</b>
-<a href="https://t.me/${adminUsername}">╰📨 @${adminUsername}</a>
+<a href="https://t.me/Nji_store">╰📨 @${adminUsername}</a>
 
 📦━━━━━━━━━━━━━━━━━━━━━📦
      <code>🌐 ᴅɪᴋᴇʟᴏʟᴀ ᴏʟᴇʜ ${NAMA_STORE} ɴᴇᴛᴡᴏʀᴋ</code>
