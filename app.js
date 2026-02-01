@@ -79,8 +79,8 @@ const bot = new Telegraf(BOT_TOKEN);
 // =======================
 
 // Username/Link yang diwajibkan
-const REQUIRED_GROUP   = '@klmpkfsvpn';
-const groupLink   = 'https://t.me/klmpkfsvpn';
+const REQUIRED_GROUP   = '@+Tz0iOUNJ5lJkYmM1';
+const groupLink   = 'https://t.me/+Tz0iOUNJ5lJkYmM1';
 
 /**
  * Kirim UI ajakan bergabung dengan tampilan keren (pakai backticks).
