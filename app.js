@@ -1103,92 +1103,44 @@ bot.command('addsaldo', async (ctx) => {
 });
 
 // ========================= MENU TOPUP PILIHAN ==========================
-bot.action('menu_topup', async (ctx) => {
-  try {
-    await ctx.answerCbQuery();
+bot.on('callback_query', async (callback) => {
+    const chatId = callback.message.chat.id;
+    const userId = callback.from.id;
+    const data = callback.data;
 
-    const userId = ctx.from.id;
-    
-    // ...lanjutkan kode seperti biasa...
-
-
-    // Hapus pesan sebelumnya
     try {
-      if (ctx.callbackQuery?.message?.message_id) {
-        await ctx.deleteMessage(ctx.callbackQuery.message.message_id);
-      }
+        if (data === 'menu_topup') {
+            userState[chatId] = 'WAITING_TOPUP_AMOUNT';
+            await bot.sendMessage(chatId, '💰 *ISI SALDO*\n\nBalas pesan ini dengan nominal topup.\nContoh: `50000`\n\n_Minimal Rp 1.000_', { parse_mode: 'Markdown' });
+        }
+
+        else if (data === 'check_payment') {
+            const order = tempOrder[chatId];
+            if (!order || order.type !== 'topup') return bot.sendMessage(chatId, '❌ Data transaksi hilang/kadaluwarsa.');
+            
+            await bot.sendMessage(chatId, '🔍 Cek mutasi...');
+            try {
+                const res = await axios.get(`https://my-payment.autsc.my.id/api/status/payment`, {
+                    params: { transaction_id: order.trx_id, apikey: config.apiKeyPayment }
+                });
+                if (res.data.paid) {
+                    if (!userBalance[userId]) userBalance[userId] = 0;
+                    userBalance[userId] += order.amount_added;
+                    saveDB(config.userBalanceFile, userBalance);
+                    
+                    delete tempOrder[chatId];
+                    await bot.sendMessage(chatId, `✅ *TOPUP SUKSES!*\nSaldo Masuk: ${formatRupiah(order.amount_added)}`);
+                } else {
+                    await bot.sendMessage(chatId, '❌ Pembayaran belum masuk. Coba lagi nanti.');
+                }
+            } catch (e) { await bot.sendMessage(chatId, '❌ Gagal cek status.'); }
+        }
     } catch (err) {
-      console.warn("⚠️ Gagal hapus pesan lama:", err.message);
+        console.error("Callback Error:", err);
     }
-
-    // Ambil username admin
-    let adminUsername = 'Admin';
-    try {
-      const adminChat = await bot.telegram.getChat(ADMIN);
-      if (adminChat.username) adminUsername = adminChat.username;
-    } catch (e) {
-      console.warn('⚠️ Gagal ambil username admin:', e.message);
-    }
-
-    const NAMA_STORE = vars?.NAMA_STORE || 'XWANSTORE';
-    const config = loadButtonConfig ? loadButtonConfig() : { topup_saldo: true, topup_saweria: true };
-
-    const keyboard = [];
-    if (config.topup_saldo)
-      keyboard.push([{ text: "💸 Topup QRIS Orkut", callback_data: "topup_saldo" }]);
-    if (config.topup_saweria)
-      keyboard.push([{ text: "💸 Topup QRIS Saweria", callback_data: "topup_saweria" }]);
-    keyboard.push([{ text: "🔙 Kembali ke Menu Utama", callback_data: "send_main_menu" }]);
-
-    // 🧭 Tampilan aman + small caps elegan
-    const messageText = `
-📦━━━━━━━━━━━━━━━━━━━━📦
-      <b>⚡ TOPUP SALDO ⚡</b>
-📦━━━━━━━━━━━━━━━━━━━━📦
-
-💳 <b>ᴍᴇɴᴜ ᴛᴏᴘ-ᴜᴘ ꜱᴀʟᴅᴏ</b>  
-ᴘɪʟɪʜ ᴍᴇᴛᴏᴅᴇ ᴛᴏᴘ-ᴜᴘ ʏᴀɴɢ ᴋᴀᴍᴜ ɪɴɢɪɴᴋᴀɴ ᴅɪ ʙᴀᴡᴀʜ ɪɴɪ ⤵️
-
-┏━━━━━━━━━━━━━━━━━━━┓
-┃ 💸 <b>Qʀɪꜱ Oʀᴋᴜᴛ</b> — ᴘʀᴏꜱᴇꜱ ᴀᴜᴛᴏᴍᴀᴛɪꜱ  
-┃ 💸 <b>Qʀɪꜱ Sᴀᴡᴇʀɪᴀ</b> — ᴠᴇʀɪꜰɪᴋᴀꜱɪ ᴄᴇᴘᴀᴛ  
-┗━━━━━━━━━━━━━━━━━━━┛
-
-📘 <b>ᴛᴀᴛᴀ ᴄᴀʀᴀ ᴛᴏᴘ-ᴜᴘ</b>  
-1️⃣ ᴋʟɪᴋ ᴛᴏᴍʙᴏʟ ᴍᴇᴛᴏᴅᴇ ᴘᴇᴍʙᴀʏᴀʀᴀɴ ᴅɪ ʙᴀᴡᴀʜ.  
-2️⃣ ꜱᴄᴀɴ ᴋᴏᴅᴇ Qʀ ᴀᴛᴀᴜ ꜱᴀʟɪɴ ʟɪɴᴋ ᴘᴇᴍʙᴀʏᴀʀᴀɴ.  
-3️⃣ ʟᴀᴋᴜᴋᴀɴ ᴘᴇᴍʙᴀʏᴀʀᴀɴ ꜱᴇꜱᴜᴀɪ ɴᴏᴍɪɴᴀʟ.  
-4️⃣ ᴛᴜɴɢɢᴜ ±1 ᴍᴇɴɪᴛ, ꜱᴀʟᴅᴏ ᴀᴋᴀɴ ᴍᴀꜱᴜᴋ ᴀᴜᴛᴏᴍᴀᴛɪꜱ.  
-5️⃣ ᴊɪᴋᴀ ʙᴇʟᴜᴍ ᴍᴀꜱᴜᴋ, ʜᴜʙᴜɴɢɪ ᴀᴅᴍɪɴ ᴅᴇɴɢᴀɴ ʙᴜᴋᴛɪ ᴛʀᴀɴꜱᴀᴋꜱɪ.  
-
-☎️ <b>ʜᴜʙᴜɴɢɪ ᴀᴅᴍɪɴ:</b>  
-╰<a href="https://t.me/${adminUsername}">@${adminUsername}</a>
-
-📦━━━━━━━━━━━━━━━━━━━━📦
-     <code>🌐 ᴅɪᴋᴇʟᴏʟᴀ ᴏʟᴇʜ ${NAMA_STORE} ɴᴇᴛᴡᴏʀᴋ</code>
-📦━━━━━━━━━━━━━━━━━━━━📦
-`;
-
-
-    const sent = await ctx.reply(messageText, {
-      parse_mode: 'HTML',
-      reply_markup: { inline_keyboard: keyboard },
-      disable_web_page_preview: true
-    });
-
-    if (sent?.message_id) {
-      lastMenus[ctx.from.id] = sent.message_id;
-    }
-
-  } catch (err) {
-    console.error("❌ Error di menu_topup:", err);
-    await ctx.reply("⚠️ Gagal menampilkan menu TopUp. Silakan coba lagi.");
-  }
+    
+    bot.answerCallbackQuery(callback.id).catch(() => {});
 });
-
-
-
-
 
 async function processDepositSaweria(ctx, amount) {
   try {
