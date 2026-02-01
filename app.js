@@ -1121,7 +1121,7 @@ bot.on('callback_query', async (callback) => {
             await bot.sendMessage(chatId, '🔍 Cek mutasi...');
             try {
                 const res = await axios.get(`https://my-payment.autsc.my.id/api/status/payment`, {
-                    params: { transaction_id: order.trx_id, apikey: config.apiKeyPayment }
+                    params: { transaction_id: order.trx_id, apikey: config.${API_KEY} }
                 });
                 if (res.data.paid) {
                     if (!userBalance[userId]) userBalance[userId] = 0;
@@ -1129,7 +1129,7 @@ bot.on('callback_query', async (callback) => {
                     saveDB(config.userBalanceFile, userBalance);
                     
                     delete tempOrder[chatId];
-                    await bot.sendMessage(chatId, `✅ *TOPUP SUKSES!*\nSaldo Masuk: ${formatRupiah(order.amount_added)}`);
+                    await bot.sendMessage(chatId, `✅ *TOPUP SUKSES!*\nSaldo Masuk: ${currentDate(order.amount_added)}`);
                 } else {
                     await bot.sendMessage(chatId, '❌ Pembayaran belum masuk. Coba lagi nanti.');
                 }
@@ -1141,7 +1141,46 @@ bot.on('callback_query', async (callback) => {
     
     bot.answerCallbackQuery(callback.id).catch(() => {});
 });
+// ==========================================
+// 7. MESSAGE HANDLER
+// ==========================================
+bot.on('message', async (msg) => {
+    const chatId = msg.chat.id;
+    const text = msg.text;
+    const userId = msg.from.id;
 
+    if (!text || text.startsWith('/')) return;
+    if (!userState[chatId]) return;
+
+    const state = userState[chatId];
+
+    if (state === 'WAITING_TOPUP_AMOUNT') {
+        const nominal = parseInt(text.replace(/[^0-9]/g, ''));
+        if (isNaN(nominal) || nominal < 1000) return bot.sendMessage(chatId, '❌ Nominal tidak valid/kurang dari 1000.');
+
+        delete userState[chatId];
+        await bot.sendMessage(chatId, '⏳ Membuat QRIS...');
+        try {
+            const res = await axios.get(`https://my-payment.autsc.my.id/api/deposit`, {
+                params: { amount: nominal, apikey: config.${API_KEY} }
+            });
+
+            if (res.data.status === 'success') {
+                const d = res.data.data;
+                tempOrder[chatId] = { type: 'topup', trx_id: d.transaction_id, amount_added: nominal };
+
+                await bot.sendPhoto(chatId, d.qris_url, {
+                    caption: `*TAGIHAN TOPUP*\nJumlah: ${currentDate(nominal)}\n*Bayar: Rp ${d.total_amount}*\n\nScan QRIS diatas, lalu klik tombol cek di bawah.`,
+                    parse_mode: 'Markdown',
+                    reply_markup: { inline_keyboard: [[{ text: '✅ Cek Status Bayar', callback_data: 'check_payment' }]] }
+                });
+            } else {
+                await bot.sendMessage(chatId, '❌ Gagal membuat pembayaran.');
+            }
+        } catch (e) { bot.sendMessage(chatId, '❌ Error Payment Gateway.'); }
+    }
+
+  
 async function processDepositSaweria(ctx, amount) {
   try {
     const SAWERIA_USERNAME = process.env.SAWERIA_USERNAME || vars.SAWERIA_USERNAME;
